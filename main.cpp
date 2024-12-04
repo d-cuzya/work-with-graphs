@@ -27,6 +27,7 @@ std::vector<Vertex> Vertexs;
 bool createEdge();
 bool createVertex();
 std::string getVertexsList();
+std::string getEdgesList();
 
 int main() {
 	setlocale(LC_ALL, "Russian");
@@ -51,6 +52,18 @@ int main() {
 		}
 		else {
 			std::cout << "ERROR: Unknown action!\n";
+		}
+	}
+}
+
+std::string getEdgesList() {
+	if (Edges.empty()) {
+		return "Edge List:\nEmpty\n";
+	}
+	else {
+		std::string res = "Edge List:\n";
+		for (int i = 0; i < Edges.size(); i++) {
+			res += ""; // Not ended
 		}
 	}
 }
