@@ -26,13 +26,14 @@ std::vector<Vertex> Vertexs;
 
 bool createEdge();
 bool createVertex();
+std::string getVertexsList();
 
 int main() {
 	setlocale(LC_ALL, "Russian");
 	bool isOn = true;
 	std::string input = "";
 	while (isOn) {
-		std::cout << "1) Add Vertex\n2) Add the vertex of the edge\n";
+		std::cout << "1) Add Vertex\n2) Add the vertex of the edge\n3) Get List Vertexs\n";
 		std::cin >> input;
 		if (input == "1") {
 			if (createVertex() == true) {
@@ -45,9 +46,25 @@ int main() {
 		else if (input == "2") {
 			createEdge();
 		}
+		else if (input == "3") {
+			std::cout << getVertexsList();
+		}
 		else {
 			std::cout << "ERROR: Unknown action!\n";
 		}
+	}
+}
+
+std::string getVertexsList() {
+	if (Vertexs.empty()) {
+		return "Vertex List:\nEmpty\n";
+	}
+	else {
+		std::string res = "Vertex List:\n";
+		for (int i = 0; i < Vertexs.size(); i++) {
+			res += Vertexs[i].name + "\n";
+		}
+		return res;
 	}
 }
 
