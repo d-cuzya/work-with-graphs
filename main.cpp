@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <string>
 
 class Vertex {
 public:
@@ -34,7 +35,7 @@ int main() {
 	bool isOn = true;
 	std::string input = "";
 	while (isOn) {
-		std::cout << "1) Add Vertex\n2) Add the vertex of the edge\n3) Get List Vertexs\n";
+		std::cout << "1) Add Vertex\n2) Add the vertex of the edge\n3) Get List Vertexs\n4) Get List Edge\n";
 		std::cin >> input;
 		if (input == "1") {
 			if (createVertex() == true) {
@@ -50,6 +51,9 @@ int main() {
 		else if (input == "3") {
 			std::cout << getVertexsList();
 		}
+		else if (input == "4") {
+			std::cout << getEdgesList();
+		}
 		else {
 			std::cout << "ERROR: Unknown action!\n";
 		}
@@ -63,8 +67,9 @@ std::string getEdgesList() {
 	else {
 		std::string res = "Edge List:\n";
 		for (int i = 0; i < Edges.size(); i++) {
-			res += ""; // Not ended
+			res += Edges[i].previousPtr->name + " " + std::to_string(Edges[i].weight) + " " + Edges[i].nextPtr->name + "\n";
 		}
+		return res;
 	}
 }
 
