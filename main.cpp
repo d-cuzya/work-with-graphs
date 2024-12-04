@@ -46,7 +46,12 @@ int main() {
 			}
 		}
 		else if (input == "2") {
-			createEdge();
+			if (createEdge() == true) {
+				std::cout << "The Edge was successfully added.\n";
+			}
+			else {
+				isOn = false;
+			}
 		}
 		else if (input == "3") {
 			std::cout << getVertexsList();
