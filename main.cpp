@@ -1,34 +1,6 @@
-#include <vector>
-#include <iostream>
-#include <string>
+#include "model.h"
 
-class Vertex {
-public:
-	Vertex(std::string _name) {
-		name = _name;
-	}
-	std::string name;
-};
 
-class Edge {
-public:
-	Edge(int _weight, Vertex* _nextPtr, Vertex* _previousPtr) {
-		weight = _weight;
-		nextPtr = _nextPtr;
-		previousPtr = _previousPtr;
-	}
-	int weight;
-	Vertex* nextPtr;
-	Vertex* previousPtr;
-};
-
-std::vector<Edge> Edges;
-std::vector<Vertex> Vertexs;
-
-bool createEdge();
-bool createVertex();
-std::string getVertexsList();
-std::string getEdgesList();
 
 int main() {
 	setlocale(LC_ALL, "Russian");
@@ -38,7 +10,7 @@ int main() {
 		std::cout << "1) Add Vertex\n2) Add the vertex of the edge\n3) Get List Vertexs\n4) Get List Edge\n";
 		std::cin >> input;
 		if (input == "1") {
-			if (createVertex() == true) {
+			if (createVertex()) {
 				std::cout << "The vertex was successfully added.\n";
 			}
 			else {
@@ -46,7 +18,7 @@ int main() {
 			}
 		}
 		else if (input == "2") {
-			if (createEdge() == true) {
+			if (createEdge()) {
 				std::cout << "The Edge was successfully added.\n";
 			}
 			else {
