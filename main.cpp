@@ -92,6 +92,25 @@ std::string getVertexsList() {
 }
 
 bool createEdge() {
+	std::string input = "";
+	bool exit = false;
+	while (true) {
+		std::cout << "Enter name previous Vertex (enter '000' for exit)\n";
+		std::cin >> input;
+		if (input == "000") {
+			exit = true;
+			return;
+		}
+		Vertex* _previousVertex = nullptr;
+		for (int i = 0; i < Vertexs.size();) {
+			if (Vertexs[i].name == input) {
+				_previousVertex = &Vertexs[i];
+			}
+		}
+		if (_previousVertex == nullptr) {
+			continue;
+		}
+	}
 	return true;
 }
 
