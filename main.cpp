@@ -101,9 +101,9 @@ bool createEdge() {
 		std::cin >> input;
 		if (input == "000") {
 			exit = true;
-			return;
+			break;
 		}
-		for (int i = 0; i < Vertexs.size();) {
+		for (int i = 0; i < Vertexs.size();i++) {
 			if (Vertexs[i].name == input) {
 				_previousVertex = &Vertexs[i];
 			}
@@ -117,9 +117,9 @@ bool createEdge() {
 		std::cin >> input;
 		if (input == "000") {
 			exit = true;
-			return;
+			break;
 		}
-		for (int i = 0; i < Vertexs.size();) {
+		for (int i = 0; i < Vertexs.size();i++) {
 			if (Vertexs[i].name == input) {
 				_nextVertex = &Vertexs[i];
 			}
@@ -139,6 +139,8 @@ bool createEdge() {
 		if (_weight == NULL) {
 			continue;
 		}
+		Edges.emplace_back(_weight, _nextVertex, _previousVertex);
+		break;
 	}
 	if (exit) {
 		return false;
