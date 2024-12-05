@@ -92,24 +92,56 @@ std::string getVertexsList() {
 }
 
 bool createEdge() {
-	std::string input = "";
 	bool exit = false;
 	while (true) {
+		std::string input = "";
+		Vertex* _previousVertex = nullptr;
+		Vertex* _nextVertex = nullptr;
 		std::cout << "Enter name previous Vertex (enter '000' for exit)\n";
 		std::cin >> input;
 		if (input == "000") {
 			exit = true;
 			return;
 		}
-		Vertex* _previousVertex = nullptr;
 		for (int i = 0; i < Vertexs.size();) {
 			if (Vertexs[i].name == input) {
 				_previousVertex = &Vertexs[i];
 			}
 		}
 		if (_previousVertex == nullptr) {
+			std::cout << "ERROR: Vertex not found!\n";
 			continue;
 		}
+		input = "";
+		std::cout << "Enter name next Vertex (enter '000' for exit)\n";
+		std::cin >> input;
+		if (input == "000") {
+			exit = true;
+			return;
+		}
+		for (int i = 0; i < Vertexs.size();) {
+			if (Vertexs[i].name == input) {
+				_nextVertex = &Vertexs[i];
+			}
+		}
+		if (_nextVertex == nullptr) {
+			std::cout << "ERROR: Vertex not found!\n";
+			continue;
+		}
+		std::cout << "Enter weight Edge:\n";
+		std::cin >> input;
+		int _weight = NULL;
+		try {
+			_weight = std::stoi(input);
+		} catch (const std::exception& error) {
+			std::cout << "ERROR: Weight not integer!";
+		}
+		if (_weight == NULL) {
+			continue;
+		}
+	}
+	if (exit) {
+		return false;
 	}
 	return true;
 }
