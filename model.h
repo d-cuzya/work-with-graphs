@@ -136,22 +136,38 @@ std::vector<Edge> algorithmPrima() {
 	// Проходимся по вершинам
 	for (size_t i = 0; i < Vertexs.size(); i++) {
 		int minWeight = INT_MAX;
-		Edge* refEdge = nullptr;
+		int _weight = NULL;
+		Vertex* _nextPtr = NULL;
+		Vertex* _previousPtr = NULL;
 		// Смотрим каждое ребро
 		for (size_t j = 0; j < Edges.size(); j++) {
 			// проверяем связанно ли ребро с нашей вершинной
 			if (Edges[j].nextPtr->name == Vertexs[i].name || Edges[j].previousPtr->name == Vertexs[i].name) {
 				// Если значение ребра меньше минимально известной, то
 				if (Edges[j].weight < minWeight) {
-					// Обновляем минимальную
-					minWeight = Edges[j].weight;
-					// Сохраняем ссылку на него
-					refEdge = &Edges[j];
+					// Проверяем существует ли уже такое значение
+					bool unic = true;
+					for (size_t k = 0; k < res.size(); k++)
+					{
+						if (res[k].weight == Edges[j].weight && res[k].nextPtr == Edges[j].nextPtr && res[k].previousPtr == Edges[j].previousPtr) {
+							unic = false;
+						}
+					}
+					if (unic) {
+						// Обновляем минимальную
+						minWeight = Edges[j].weight;
+						// Сохраняем инфу
+						_weight = Edges[j].weight;
+						_nextPtr = Edges[j].nextPtr;
+						_previousPtr = Edges[j].previousPtr;
+					}
 				}
 			}
 		}
-		res.emplace_back(refEdge->weight, refEdge->nextPtr, refEdge->previousPtr);
+		if (_weight != NULL && _nextPtr != NULL && _previousPtr != NULL) {
+			res.emplace_back(_weight, _nextPtr, _previousPtr);
+		}
 	}
-
+	
 	return res;
 }
