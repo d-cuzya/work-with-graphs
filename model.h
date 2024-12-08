@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <climits>
+#include <set>
 
 class Vertex {
 public:
@@ -127,4 +129,29 @@ bool createVertex() {
 		std::cout << "ERROR: " << *error.what();
 		return false;
 	}
+}
+
+std::vector<Edge> algorithmPrima() {
+	std::vector<Edge> res;
+	// ѕроходимс€ по вершинам
+	for (size_t i = 0; i < Vertexs.size(); i++) {
+		int minWeight = INT_MAX;
+		Edge* refEdge = nullptr;
+		// —мотрим каждое ребро
+		for (size_t j = 0; j < Edges.size(); j++) {
+			// провер€ем св€занно ли ребро с нашей вершинной
+			if (Edges[j].nextPtr->name == Vertexs[i].name || Edges[j].previousPtr->name == Vertexs[i].name) {
+				// ≈сли значение ребра меньше минимально известной, то
+				if (Edges[j].weight < minWeight) {
+					// ќбновл€ем минимальную
+					minWeight = Edges[j].weight;
+					// —охран€ем ссылку на него
+					refEdge = &Edges[j];
+				}
+			}
+		}
+		res.emplace_back(refEdge->weight, refEdge->nextPtr, refEdge->previousPtr);
+	}
+
+	return res;
 }

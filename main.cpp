@@ -5,7 +5,7 @@ int main() {
 	bool isOn = true;
 	std::string input = "";
 	while (isOn) {
-		std::cout << "1) Add Vertex\n2) Add the vertex of the edge\n3) Get List Vertexs\n4) Get List Edge\n";
+		std::cout << "1) Add Vertex\n2) Add the vertex of the edge\n3) Get List Vertexs\n4) Get List Edge\n5) The Algorithm Prima\n";
 		std::cin >> input;
 		if (input == "1") {
 			if (createVertex()) {
@@ -28,6 +28,15 @@ int main() {
 		}
 		else if (input == "4") {
 			std::cout << getEdgesList();
+		}
+		else if (input == "5") {
+			std::vector<Edge> tmp = algorithmPrima();
+			//std::cout << algorithmPrima();
+			for (size_t i = 0; i < tmp.size(); i++)
+			{
+				std::cout << tmp[i].nextPtr->name + " - " + tmp[i].previousPtr->name + ": " + std::to_string(tmp[i].weight) + "\n";
+			}
+			Edges = tmp;
 		}
 		else {
 			std::cout << "ERROR: Unknown action!\n";
