@@ -15,6 +15,11 @@ public:
 
 class Edge {
 public:
+	/*Edge() {
+		weight = NULL;
+		nextPtr = nullptr;
+		previousPtr = nullptr;
+	}*/
 	Edge(int _weight, Vertex* _nextPtr, Vertex* _previousPtr) {
 		weight = _weight;
 		nextPtr = _nextPtr;
@@ -133,41 +138,32 @@ bool createVertex() {
 
 std::vector<Edge> algorithmPrima() {
 	std::vector<Edge> res;
-	// Проходимся по вершинам
 	for (size_t i = 0; i < Vertexs.size(); i++) {
 		int minWeight = INT_MAX;
-		int _weight = NULL;
-		Vertex* _nextPtr = NULL;
-		Vertex* _previousPtr = NULL;
-		// Смотрим каждое ребро
+		Edge* tmpEdge = nullptr;
 		for (size_t j = 0; j < Edges.size(); j++) {
-			// проверяем связанно ли ребро с нашей вершинной
 			if (Edges[j].nextPtr->name == Vertexs[i].name || Edges[j].previousPtr->name == Vertexs[i].name) {
-				// Если значение ребра меньше минимально известной, то
 				if (Edges[j].weight < minWeight) {
-					// Проверяем существует ли уже такое значение
-					bool unic = true;
-					for (size_t k = 0; k < res.size(); k++)
-					{
-						if (res[k].weight == Edges[j].weight && res[k].nextPtr == Edges[j].nextPtr && res[k].previousPtr == Edges[j].previousPtr) {
-							unic = false;
-						}
-					}
-					if (unic) {
-						// Обновляем минимальную
-						minWeight = Edges[j].weight;
-						// Сохраняем инфу
-						_weight = Edges[j].weight;
-						_nextPtr = Edges[j].nextPtr;
-						_previousPtr = Edges[j].previousPtr;
-					}
+					minWeight = Edges[j].weight;
+					tmpEdge = &Edges[j];
 				}
 			}
 		}
-		if (_weight != NULL && _nextPtr != NULL && _previousPtr != NULL) {
-			res.emplace_back(_weight, _nextPtr, _previousPtr);
+		if (tmpEdge != nullptr) {
+			bool itsNew = true;
+			std::cout << "\tПров. эл.\tПров. эл.\tНаш эл.\tНаш эл.\n";
+			for (size_t k = 0; k < res.size(); k++)
+			{
+
+				if ((tmpEdge->nextPtr->name == res[k].nextPtr->name || tmpEdge->nextPtr->name == res[k].previousPtr->name) && (tmpEdge->previousPtr->name == res[k].nextPtr->name || tmpEdge->previousPtr->name == res[k].previousPtr->name)) {
+					itsNew = false;
+					std::cout << "Совпадают:\t" << res[k].nextPtr->name << "\t" << res[k].previousPtr->name << "\t" << tmpEdge->nextPtr->name << "\t" << tmpEdge->previousPtr->name << "\n";
+				}
+			}
+			if (itsNew) {
+				res.push_back(*tmpEdge);
+			}
 		}
 	}
-	
 	return res;
 }
