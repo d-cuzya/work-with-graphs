@@ -1,1 +1,1 @@
-This is a program for working with graphs in C++. You can add a vertex and edges to it. So far, only the Prima algorithm has been added (it does not work correctly). There are plans to add the ability to import and export graphs to json. I also want to add a graphical representation of graphs.
+This is a program for working with graphs in C++. You can add a vertex and edges to it. So far, only the Prima algorithm has been added. There are plans to add the ability to import and export graphs to json. I also want to add a graphical representation of graphs.
