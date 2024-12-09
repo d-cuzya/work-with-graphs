@@ -4,21 +4,21 @@ int main() {
 	setlocale(LC_ALL, "Russian");
 	bool isOn = true;
 	std::string input = "";
-	Vertexs.emplace_back("A");// 0
-	Vertexs.emplace_back("B");// 1
-	Vertexs.emplace_back("C");// 2
-	Vertexs.emplace_back("D");// 3
-	Vertexs.emplace_back("E");// 4
-	Vertexs.emplace_back("F");// 5
-	Edges.emplace_back(7, &Vertexs[0], &Vertexs[1]);
-	Edges.emplace_back(8, &Vertexs[0], &Vertexs[2]);
-	Edges.emplace_back(11, &Vertexs[1], &Vertexs[2]);
-	Edges.emplace_back(2, &Vertexs[1], &Vertexs[3]);
-	Edges.emplace_back(6, &Vertexs[2], &Vertexs[3]);
-	Edges.emplace_back(9, &Vertexs[2], &Vertexs[4]);
-	Edges.emplace_back(11, &Vertexs[3], &Vertexs[4]);
-	Edges.emplace_back(9, &Vertexs[3], &Vertexs[5]);
-	Edges.emplace_back(10, &Vertexs[4], &Vertexs[5]);
+	//Vertexs.emplace_back("A");// 0
+	//Vertexs.emplace_back("B");// 1
+	//Vertexs.emplace_back("C");// 2
+	//Vertexs.emplace_back("D");// 3
+	//Vertexs.emplace_back("E");// 4
+	//Vertexs.emplace_back("F");// 5
+	//Edges.emplace_back(7, &Vertexs[0], &Vertexs[1]);
+	//Edges.emplace_back(8, &Vertexs[0], &Vertexs[2]);
+	//Edges.emplace_back(11, &Vertexs[1], &Vertexs[2]);
+	//Edges.emplace_back(2, &Vertexs[1], &Vertexs[3]);
+	//Edges.emplace_back(6, &Vertexs[2], &Vertexs[3]);
+	//Edges.emplace_back(9, &Vertexs[2], &Vertexs[4]);
+	//Edges.emplace_back(11, &Vertexs[3], &Vertexs[4]);
+	//Edges.emplace_back(9, &Vertexs[3], &Vertexs[5]);
+	//Edges.emplace_back(10, &Vertexs[4], &Vertexs[5]);
 	while (isOn) {
 		std::cout << "1) Add Vertex\n2) Add the vertex of the edge\n3) Get List Vertexs\n4) Get List Edge\n5) The Algorithm Prima\n";
 		std::cin >> input;
